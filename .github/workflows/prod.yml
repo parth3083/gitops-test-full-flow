@@ -43,6 +43,6 @@ jobs:
           git config user.email "actions@github.com"
           git add .
           git commit -m "Updated the image of the project to tag ${{github.sha}}"
-          git push https://${PAT}@github.com/parth3083/gitops-argocd.git main
+          git push https://${PAT}@github.com/parth3083/gitops-argocd main
 
 
