@@ -35,7 +35,7 @@ jobs:
         run: |
           git clone https://github.com/parth3083/gitops-argocd.git
 
-          sed -i 's|image: parth3083/gitops-practice:.*|image:parth3083/gitops-practice:${{github.sha}}' manifest.yml
+          sed -i 's|image: parth3083/gitops-practice:.*|image:parth3083/gitops-practice:${{github.sha}}|' manifest.yml
 
           git config user.name "Github Actions Bot"
           git config user.email "actions@github.com"
