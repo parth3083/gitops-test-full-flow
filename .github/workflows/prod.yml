@@ -27,4 +27,20 @@ jobs:
           context: .
           file: Dockerfile
           push: true
-          tags: parth3083/gitops-practice:${{github.sha}}      
+          tags: parth3083/gitops-practice:${{github.sha}}
+
+      - name: Cloning the repos and update the image and push tags
+        env:
+          PAT: ${{secrets.PAT}}
+        run: |
+          git clone https://github.com/parth3083/gitops-argocd.git
+
+          sed -i 's|image: parth3083/gitops-practice:.*|image:parth3083/gitops-practice:${{github.sha}}' manifest.yml
+
+          git config user.name "Github Actions Bot"
+          git config user.email "actions@github.com"
+          git add .
+          git commit -m "Updated the image of the project to tag ${{github.sha}}"
+          git push https://${PAT}@github.com/parth3083/gitops-argocd.git main
+
+
